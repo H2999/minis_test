@@ -32,7 +32,20 @@ message("Build type: " ${CMAKE_BUILD_TYPE})
 enable_language(C ASM)
 
 # Create an executable object type
-add_executable(${CMAKE_PROJECT_NAME})
+add_executable(${CMAKE_PROJECT_NAME}
+        Mission/device/MPU6050/MPU6050.cpp
+        Mission/device/MPU6050/MPU6050.h
+        Mission/control_task/mission_planner.cpp
+        Mission/control_task/task/init_task.cpp
+        Mission/control_task/task/mpu6050_task.cpp
+        Mission/algorithm/EKF/ekf.cpp
+        Mission/algorithm/EKF/ekf.h
+        Mission/Core/rw_lock.cpp
+        Mission/Core/rw_lock.h
+        Mission/device/SPL/spl_reg.h
+        Mission/device/SPL/SPL.cpp
+        Mission/device/SPL/SPL.h
+)
 
 # Add STM32CubeMX generated sources
 add_subdirectory(cmake/stm32cubemx)
@@ -45,11 +58,18 @@ target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
 # Add sources to executable
 target_sources(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user sources here
+        Mission/Core/FSM.c
+        Mission/device/MPU6050/MPU6050.cpp
+        Mission/algorithm/EKF/ekf.cpp
+        Mission/Core/rw_lock.cpp
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
+        Mission/device/MPU6050
+        Mission/algorithm/EKF
+        Mission/Core
 )
 
 # Add project symbols (macros)
