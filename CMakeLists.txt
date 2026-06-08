@@ -45,6 +45,10 @@ add_executable(${CMAKE_PROJECT_NAME}
         Mission/device/SPL/spl_reg.h
         Mission/device/SPL/SPL.cpp
         Mission/device/SPL/SPL.h
+        Mission/control_task/task/spl06_task.cpp
+        Mission/control_task/task/pwm_task.cpp
+        Mission/Peripheral/UART/uart_drv.cpp
+        Mission/Peripheral/UART/uart_drv.h
 )
 
 # Add STM32CubeMX generated sources
@@ -62,14 +66,18 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         Mission/device/MPU6050/MPU6050.cpp
         Mission/algorithm/EKF/ekf.cpp
         Mission/Core/rw_lock.cpp
+        Mission/device/SPL/SPL.cpp
+        Mission/Peripheral/UART/uart_drv.cpp
 )
 
 # Add include paths
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
     # Add user defined include paths
         Mission/device/MPU6050
+        Mission/device/SPL
         Mission/algorithm/EKF
         Mission/Core
+        Mission/Peripheral/UART
 )
 
 # Add project symbols (macros)
