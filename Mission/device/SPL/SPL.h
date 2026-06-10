@@ -74,6 +74,8 @@ private:
 
     SPL_t* SPL_data = nullptr;
 
+    float pressure_buffer[200]{};
+
     static constexpr float kP = 1040384.0f;
     static constexpr float kT = 524288.0f;
 };

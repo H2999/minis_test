@@ -128,7 +128,7 @@ void SPL06::get_pressure_temp_raw_data()
 void SPL06::spl_calculate_result()
 {
     float Traw_sc = static_cast<float>(SPL_data->result.temperature_raw) / kT;
-    float Praw_sc = static_cast<float>(SPL_data->result.pressure_raw / kP);
+    float Praw_sc = static_cast<float>(SPL_data->result.pressure_raw) / kP;
 
     float c00 = static_cast<float>(SPL_data->calibration_data.pressure_calibration.c00);
     float c10 = static_cast<float>(SPL_data->calibration_data.pressure_calibration.c10);
@@ -138,10 +138,22 @@ void SPL06::spl_calculate_result()
     float c11 = SPL_data->calibration_data.pressure_calibration.c11;
     float c21 = SPL_data->calibration_data.pressure_calibration.c21;
 
-    SPL_data->result.pressure = c00 +
+    for (uint8_t i = 199; i > 0;i --)
+    {
+        pressure_buffer[i] = pressure_buffer[i - 1];
+    }
+    pressure_buffer[0] = c00 +
         Praw_sc * (c10 + Praw_sc * (c20 + Praw_sc * c30))
             + Traw_sc * c01
             + Traw_sc *  Praw_sc * (c11 + Praw_sc * c21);
+
+    float filtered = 0;
+    for (const float i : pressure_buffer)
+    {
+        filtered += i;
+    }
+
+    SPL_data->result.pressure = filtered / 200.0f;
 }
 
 void SPL06::spl_update_result()

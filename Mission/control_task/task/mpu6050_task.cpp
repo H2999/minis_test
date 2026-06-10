@@ -42,9 +42,9 @@
 //
 //         ekf->QuaternionToEuler(q,&yaw,&roll,&pitch);
 //
-//         tx_data.data[0] = yaw;
-//         tx_data.data[1] = roll;
-//         tx_data.data[2] = pitch;
+//         // tx_data.data[0] = yaw;
+//         // tx_data.data[1] = roll;
+//         // tx_data.data[2] = pitch;
 //
 //         HAL_UART_Transmit_DMA(&huart2,reinterpret_cast<uint8_t *>(&tx_data),sizeof(tx_data));
 //     }
@@ -61,7 +61,7 @@
 //
 //         while (1)
 //         {
-//             // get_data();
+//             get_data();
 //             vTaskDelay(5);
 //         }
 //     }
