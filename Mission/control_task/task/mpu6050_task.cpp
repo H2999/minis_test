@@ -42,9 +42,9 @@
 //
 //         ekf->QuaternionToEuler(q,&yaw,&roll,&pitch);
 //
-//         // tx_data.data[0] = yaw;
-//         // tx_data.data[1] = roll;
-//         // tx_data.data[2] = pitch;
+//         tx_data.data[0] = yaw;
+//         tx_data.data[1] = roll;
+//         tx_data.data[2] = pitch;
 //
 //         HAL_UART_Transmit_DMA(&huart2,reinterpret_cast<uint8_t *>(&tx_data),sizeof(tx_data));
 //     }
@@ -80,47 +80,47 @@
 //         vTaskDelete(nullptr);
 //     }
 //
-//     void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
-//     {
-//         if (GPIO_Pin == GPIO_PIN_5)
-//         {
-//             tx_data.data[0] = mpu6050.get_data().temperature;
-//             tx_data.data[1] = 0.0f;
-//             tx_data.data[2] = 0.0f;
-//         }
-//         if (GPIO_Pin == GPIO_PIN_15)
-//         {
-//             tx_data.data[0] = whoami;
-//             tx_data.data[1] = 0.0f;
-//             tx_data.data[2] = 0.0f;
-//         }
-//         HAL_UART_Transmit_DMA(&huart2,(uint8_t*)&tx_data,sizeof(tx_data));
-//     }
-//
-//     void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
-//     {
-//         if (huart == &huart2)
-//         {
-//             if (rx_data == 'G')
-//             {
-//                 tx_data.data[0] = mpu6050.get_data().gyro_raw[0];
-//                 tx_data.data[1] = mpu6050.get_data().gyro_raw[1];
-//                 tx_data.data[2] = mpu6050.get_data().gyro_raw[2];
-//             }
-//             if (rx_data == 'A')
-//             {
-//                 tx_data.data[0] = mpu6050.get_data().accel_raw[0];
-//                 tx_data.data[1] = mpu6050.get_data().accel_raw[1];
-//                 tx_data.data[2] = mpu6050.get_data().accel_raw[2];
-//             }
-//             if (rx_data == 'T')
-//             {
-//                 tx_data.data[0] = mpu6050.get_data().temperature;
-//                 tx_data.data[1] = 0.0f;
-//                 tx_data.data[2] = 0.0f;
-//             }
-//             HAL_UART_Transmit_DMA(&huart2,(uint8_t*)&tx_data,sizeof(tx_data));
-//         }
-//         HAL_UART_Receive_IT(&huart2,&rx_data,sizeof(rx_data));
-//     }
+//     // void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+//     // {
+//     //     if (GPIO_Pin == GPIO_PIN_5)
+//     //     {
+//     //         tx_data.data[0] = mpu6050.get_data().temperature;
+//     //         tx_data.data[1] = 0.0f;
+//     //         tx_data.data[2] = 0.0f;
+//     //     }
+//     //     if (GPIO_Pin == GPIO_PIN_15)
+//     //     {
+//     //         tx_data.data[0] = whoami;
+//     //         tx_data.data[1] = 0.0f;
+//     //         tx_data.data[2] = 0.0f;
+//     //     }
+//     //     HAL_UART_Transmit_DMA(&huart2,(uint8_t*)&tx_data,sizeof(tx_data));
+//     // }
+//     //
+//     // void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+//     // {
+//     //     if (huart == &huart2)
+//     //     {
+//     //         if (rx_data == 'G')
+//     //         {
+//     //             tx_data.data[0] = mpu6050.get_data().gyro_raw[0];
+//     //             tx_data.data[1] = mpu6050.get_data().gyro_raw[1];
+//     //             tx_data.data[2] = mpu6050.get_data().gyro_raw[2];
+//     //         }
+//     //         if (rx_data == 'A')
+//     //         {
+//     //             tx_data.data[0] = mpu6050.get_data().accel_raw[0];
+//     //             tx_data.data[1] = mpu6050.get_data().accel_raw[1];
+//     //             tx_data.data[2] = mpu6050.get_data().accel_raw[2];
+//     //         }
+//     //         if (rx_data == 'T')
+//     //         {
+//     //             tx_data.data[0] = mpu6050.get_data().temperature;
+//     //             tx_data.data[1] = 0.0f;
+//     //             tx_data.data[2] = 0.0f;
+//     //         }
+//     //         HAL_UART_Transmit_DMA(&huart2,(uint8_t*)&tx_data,sizeof(tx_data));
+//     //     }
+//     //     HAL_UART_Receive_IT(&huart2,&rx_data,sizeof(rx_data));
+//     // }
 // }

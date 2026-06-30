@@ -17,8 +17,8 @@ extern "C"
         //             configMAX_PRIORITIES - 2, nullptr);
         // xTaskCreate(pwm_task,"pwm",512,nullptr,
         //             configMAX_PRIORITIES - 2, nullptr);
-        xTaskCreate(start_spl06_task,"spl",128,nullptr,
-                    configMAX_PRIORITIES - 2, nullptr);
+        // xTaskCreate(start_spl06_task,"spl",128,nullptr,
+        //             configMAX_PRIORITIES - 2, nullptr);
         xTaskCreate(attitude_task,"attitude",256,nullptr,
                     configMAX_PRIORITIES - 2, nullptr);
 
