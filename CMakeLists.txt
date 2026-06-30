@@ -49,6 +49,8 @@ add_executable(${CMAKE_PROJECT_NAME}
         Mission/control_task/task/pwm_task.cpp
         Mission/Peripheral/UART/uart_drv.cpp
         Mission/Peripheral/UART/uart_drv.h
+        Mission/task/attitude_task.h
+        Mission/task/attitude_task.cpp
 )
 
 # Add STM32CubeMX generated sources
@@ -68,6 +70,7 @@ target_sources(${CMAKE_PROJECT_NAME} PRIVATE
         Mission/Core/rw_lock.cpp
         Mission/device/SPL/SPL.cpp
         Mission/Peripheral/UART/uart_drv.cpp
+        Mission/task/attitude_task.cpp
 )
 
 # Add include paths
@@ -78,6 +81,7 @@ target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
         Mission/algorithm/EKF
         Mission/Core
         Mission/Peripheral/UART
+        Mission/task
 )
 
 # Add project symbols (macros)
